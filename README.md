@@ -24,7 +24,7 @@ import("graphics") %as% "g"
 from("github.com/robertzk/s3mpi") %import% c("s3store" = "%s3>%") # or %import% "s3store" %as% "%s3>%"
 
 plot(c(-1.5, 1.5), c(-1.5, 1.5), type = "n")
-temp <- list(x = seq(-1, 1,, 40), y = seq(-1, 1,, 40))
+temp   <- list(x = seq(-1, 1,, 40), y = seq(-1, 1,, 40))
 temp$z <- outer(temp$x, temp$y, "+")
 contour(temp, add = TRUE)
 
@@ -54,7 +54,7 @@ Under the hood, context uses [lockbox](https://github.com/robertzk/lockbox) for 
 that package dependencies are handled in an isolated way from the global `.libPaths()`.
 
 Aliased names surrounded with percentage symbols, such as `c("s3store" = "%s3>%")` above,
-are converted to an infix operator if the function is arity 2 or above..
+are converted to an infix operator if the function is arity 2 or above.
 
 In the example above, an imports "layer" is constructed from the `from` and `import`
 statements. This is an environment whose parent environment is the base environment.

@@ -21,7 +21,7 @@ from("cran:fields^9.6") %import% c("ribbon.plot" = "ribbon")
 from("graphics") %import% c("plot", "contour")
 from("graphicDevices") %import% "trans3d"
 import("graphics") %as% "g"
-from("github.com/robertzk/s3mpi") %import% c("s3read" = "%s3>%")
+from("github.com/robertzk/s3mpi") %import% c("s3read" = "%s3>%") # or %import% "s3read" %as% "%s3>%"
 
 t <- seq(0, 0.5,, 50)
 y <- sin(2 * pi * t)

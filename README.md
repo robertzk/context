@@ -23,7 +23,7 @@ from("graphicDevices") %import% "trans3d"
 import("graphics") %as% "g"
 from("github.com/robertzk/s3mpi") %import% c("s3store" = "%s3>%") # or %import% "s3store" %as% "%s3>%"
 
-plot(c(-1.5,1.5), c(-1.5,1.5), type = "n")
+plot(c(-1.5, 1.5), c(-1.5, 1.5), type = "n")
 temp <- list(x = seq( -1, 1,, 40), y = seq( -1, 1,, 40))
 temp$z <- outer(temp$x, temp$y, "+")
 contour(temp, add = TRUE)

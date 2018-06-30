@@ -18,8 +18,9 @@ C++, Golang, Python, Java, etc.
 # custom_plot.R
 # Translated from https://www.rdocumentation.org/packages/fields/versions/9.6/topics/ribbon.plot
 from("cran:fields^9.6") %import% c("ribbon.plot" = "ribbon")
-from("graphics") %import% c("plot", "contour", "persp")
+from("graphics") %import% c("plot", "contour")
 from("graphicDevices") %import% "trans3d"
+import("graphics") %as% "g"
 
 t <- seq(0, 0.5,, 50)
 y <- sin(2 * pi * t)
@@ -28,7 +29,7 @@ z <- x + y
 
 ribbon(x, y, z, lwd = 10)
 
-pm <- persp(temp, phi = 15, shade = 0.8, col = "grey") 
+pm <- g::persp(temp, phi = 15, shade = 0.8, col = "grey") 
 uv <- trans3d(x, y, z, pm)
 ribbon(uv$x, uv$y, z ** 2, lwd = 5)
 ```
@@ -39,3 +40,11 @@ We can execute the file from the global console using
 context::include_file("custom_plot.R")
 context:::source("custom_plot.R") # Equivalent
 ```
+
+## Internals
+
+Under the hood, context uses [lockbox](https://github.com/robertzk/lockbox) for ensuring
+that package dependencies are handled in an isolated way from the global `.libPaths()`.
+
+In the example above, an imports "layer" is constructed from the `from` and `import`
+statements. This is an environment whose parent environment is the base environment.

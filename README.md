@@ -21,7 +21,7 @@ from("cran:fields^9.6") %import% c("ribbon.plot" = "ribbon")
 from("graphics") %import% c("plot", "contour")
 from("graphicDevices") %import% "trans3d"
 import("graphics") %as% "g"
-from("github.com/robertzk/s3mpi") %import% c("s3read" = "%s3>%") # or %import% "s3read" %as% "%s3>%"
+from("github.com/robertzk/s3mpi") %import% c("s3store" = "%s3>%") # or %import% "s3store" %as% "%s3>%"
 
 t <- seq(0, 0.5,, 50)
 y <- sin(2 * pi * t)
@@ -48,7 +48,7 @@ context:::source("custom_plot.R") # Equivalent
 Under the hood, context uses [lockbox](https://github.com/robertzk/lockbox) for ensuring
 that package dependencies are handled in an isolated way from the global `.libPaths()`.
 
-Aliased names surrounded with percentage symbols, such as `c("s3read" = "%s3>%")` above,
+Aliased names surrounded with percentage symbols, such as `c("s3store" = "%s3>%")` above,
 are converted to an infix operator if the function is arity 2 or above..
 
 In the example above, an imports "layer" is constructed from the `from` and `import`
